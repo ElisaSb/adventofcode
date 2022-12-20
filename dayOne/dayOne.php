@@ -1,5 +1,5 @@
 <?php
-$fileName = '../input.txt';
+$fileName = 'input.txt';
 
 $content = fopen($fileName, "r");
 
