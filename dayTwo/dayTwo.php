@@ -11,9 +11,11 @@
 $fileName = 'input.txt';
 $content = fopen($fileName, 'r');
 
-static $rock = 1;
-static $paper = 2;
-static $scissors = 3;
+static $valueShape = [
+    'X' => 1,
+    'Y' => 2,
+    'Z' => 3
+];
 
 static $lose = 0;
 static $draw = 3;
@@ -40,6 +42,7 @@ $winners = [
 $score = 0;
 while (($line = fgets($content)) !== false) {
     $needle = str_replace("\n", "", $line);
+    $shape = substr($needle, -1);
     if (in_array($needle, $winners)) {
         $score += $lose;
     } elseif (in_array($needle, $losers)) {
@@ -47,6 +50,7 @@ while (($line = fgets($content)) !== false) {
     } elseif (in_array($needle, $tie)) {
         $score += $draw;
     }
+    $score += $valueShape[$shape];
 }
 
 echo nl2br($score);
